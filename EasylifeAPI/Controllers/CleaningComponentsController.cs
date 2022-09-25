@@ -20,14 +20,16 @@ namespace EasylifeAPI.Controllers
             _context = context;
         }
 
-        /*
+        
 
         // GET: api/CleaningComponents
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CleaningComponent>>> GetCleaningComponents()
         {
             return await _context.CleaningComponents.ToListAsync();
-        }*/
+        }
+
+        //
 
 
         // GET: api/CleaningComponents/5
