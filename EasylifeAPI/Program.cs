@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<EasyLifeDBContext>(option => option.UseSqlServer(
+builder.Services.AddDbContext<EasyLifeApiDBContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
