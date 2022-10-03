@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  easylifeapi:
+    image: ${DOCKER_REGISTRY-}easylifeapi
+    build:
+      context: .
+      dockerfile: EasylifeAPI/Dockerfile
+    depends_on:
+        - sqlserverService
+    networks:
+        - easynet
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+  sqlserverService:
+    image: mcr.microsoft.com/mssql/server:latest
+    hostname: sqlserverService
+    container_name: sqlserverService
+    environment:
+        ACCEPT_EULA: Y
+        SA_PASSWORD: SwN123456789
+    volumes:
+        - ./data/mssql:/var/opt/mssql3
+    ports:
+        - 1433:1433
+    networks:
+        - easynet
+networks:
+    easynet:
+        driver: bridge
+  
