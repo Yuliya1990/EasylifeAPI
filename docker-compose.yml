@@ -40,6 +40,14 @@ services:
     networks:
         - easynet
 
+  backend-mailer:
+    image: backend
+    build:
+        context: ../../backend
+        dockerfile: Dockerfile
+    networks:
+        - easynet
+
 networks:
     easynet:
         driver: bridge
