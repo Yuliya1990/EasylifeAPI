@@ -12,6 +12,7 @@ services:
         - easynet
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
+
   sqlserverService:
     image: mcr.microsoft.com/mssql/server:latest
     hostname: sqlserverService
@@ -20,12 +21,28 @@ services:
         ACCEPT_EULA: Y
         SA_PASSWORD: SwN123456789
     volumes:
-        - ./data/mssql:/var/opt/mssql3
+        - database:/var/opt/mssql3
     ports:
         - 1433:1433
     networks:
         - easynet
+
+  easy-life-frontend:
+    image: easy-life
+    build:
+        context: ../../easy-life
+        dockerfile: Dockerfile
+    networks:
+        - easynet
+
+  proxy:
+    image: nginx:mainline
+    networks:
+        - easynet
+
 networks:
     easynet:
         driver: bridge
+volumes:
+    database:
   
